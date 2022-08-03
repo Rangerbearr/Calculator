@@ -23,49 +23,19 @@ function findOperation(a,b,c){
     }
 }
 
-// let first;
-// let operator;
-// let temp = '';
-// let holder = '';
-// function display(){
-//     const buttons = document.querySelectorAll('button');
-//     const display = document.querySelector('#display');
-//     buttons.forEach(button => {
-//         button.addEventListener('click', ()=>{
-//             holder = button.innerHTML;
-//             console.log(temp);
-            // if(button.innerHTML == '+' || button.innerHTML == '-' || button.innerHTML == '÷' || button.innerHTML == 'x'){
-            //     first = temp;
-            //     operator = button.innerHTML;
-            //     temp = '';
-            //     holder = '';
-            // }
-//             temp += holder;
-//             display.textContent = temp;
-//             if(button.innerHTML == '='){
-//                 let second = temp.slice(0,-1);
-//                 display.textContent = findOperation(operator,Number(first),Number(second));
-//                 temp = findOperation(operator,Number(first),Number(second));
-//             }
-//         });
-//     });
-// }
-
 function equate (equation){
-    // let ans;
-    // let inital = findOperation(equation[1],parseInt(equation[0]),parseInt(equation[2]));
-    // for(let i = 2; i<equation.length; i++){
-        // if(equation[i] == '+' || equation[i] == '-' || equation[i] == '÷' || equation[i] == 'x'){
-        //     ans = findOperation(equation[i],inital,parseInt(equation[i+1]))
-        //     intital = ans;
-        //     console.log(ans);
-        // }
-    // }
-    // return ans;
+    let replaced;
+    for(let i = 0; i<equation.length - 1; i++){
+        if(equation[i] == 'x' || equation[i] == '÷'){
+            replaced = findOperation(equation[i],equation[i-1],equation[i+1])
+            equation.splice(i-1,3,replaced);
+            console.log(equation);
+        }
+    }
     let inital = findOperation(equation[1],parseInt(equation[0]),parseInt(equation[2]));
     if(equation.length>3){
         for(let i = 3; i<equation.length -1; i++){
-            if(equation[i] == '+' || equation[i] == '-' || equation[i] == '÷' || equation[i] == 'x'){
+            if(equation[i] == '+' || equation[i] == '-'){
                 inital = findOperation(equation[i],inital,parseInt(equation[i+1]));
         }
     }
