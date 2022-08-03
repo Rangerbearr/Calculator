@@ -29,7 +29,9 @@ function equate (equation){
         if(equation[i] == 'x' || equation[i] == '÷'){
             replaced = findOperation(equation[i],equation[i-1],equation[i+1])
             equation.splice(i-1,3,replaced);
-            console.log(equation);
+            if(equation.length == 1){
+                return equation[0];
+            }
         }
     }
     let inital = findOperation(equation[1],parseInt(equation[0]),parseInt(equation[2]));
@@ -61,6 +63,12 @@ function display(){
                 holder = '';
                 ans = equate(equation);
                 answer.textContent = ans;
+            }
+            if(button.innerHTML == 'AC'){
+                holder = '';
+                temp = '';
+                equation.textContent = '';
+                answer.textContent = '';
             }
             temp += holder;
             equation.textContent += holder;
